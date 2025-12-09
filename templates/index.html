@@ -4,21 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CropAI - AI Crop Recommendation System</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
   <nav class="navbar">
     <div class="logo">🌱 CropAI</div>
     <ul class="nav-links">
-      <!-- <li><a href="index.html"><button type="button">Home</button></a></li>
-      <li><a href="predict.html"><button type="button">Predict</button></a></li>
-      <li><a href="contact.html"><button type="button">Contact</button></a></li> -->
-      <li><a href="{{ url_for('home') }}"><button type="button">Home</button></a></li>
-      <li><a href="{{ url_for('predict_page') }}"><button type="button">Predict</button></a></li>
-      <li><a href="{{ url_for('contact_page') }}"><button type="button">Contact</button></a></li>
-
+      <li><a href="{{ url_for('index') }}"><button type="button">Home</button></a></li>
+      <li><a href="{{ url_for('predict') }}"><button type="button">Predict</button></a></li>
+      <li><a href="{{ url_for('contact') }}"><button type="button">Contact</button></a></li>
     </ul>
   </nav>
   <div class="hero-image" aria-label="farm">
@@ -26,9 +20,7 @@
       <h1>Welcome to CropAI</h1>
       <p>AI-based crop recommendations for better yields</p>
     <br><br>
-  <!-- <a href="predict.html" class="cta-button">Get Started</a> -->
-  <a href="{{ url_for('predict_page') }}" class="cta-button">Get Started</a>
-
+  <a href="{{ url_for('predict') }}" class="cta-button">Get Started</a>
     </div>
   </div>
 <div class="about-section">
@@ -126,7 +118,7 @@
     <p>
       Start using our AI-powered system today and make smarter farming decisions.
     </p>
-  <a href="predict.html" class="cta-button">Try Crop Prediction</a>
+  <a href="{{ url_for('predict') }}" class="cta-button">Try Crop Prediction</a>
   </div>
 </section>
 
