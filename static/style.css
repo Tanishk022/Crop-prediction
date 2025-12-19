@@ -8,7 +8,14 @@
 body {
   background-color: #f9fdfb;
   color: #222;
-  /* background-image: url('download.jpeg'); */
+  background-image: url('img.png');
+  /* Show the entire image without cropping */
+  background-size: contain;        /* ensures full image is visible */
+  background-position: center top; /* keep horizon near top */
+  background-repeat: no-repeat;
+  /* Uncomment next line if you want subtle parallax and full viewport coverage */
+  /* background-attachment: fixed; */
+  
 }
 
 /* Navbar */
@@ -17,7 +24,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
-  padding: 15px 50px;
+  padding: 12px 24px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -31,11 +38,11 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 16px;
 }
 .nav-links a {
   text-decoration: none;
-  color: #ffffff;
+  color: #2f3b17;
   font-weight: 500;
   transition: color 0.3s;
 }
@@ -170,15 +177,21 @@ button {
 /* ...existing code... */
 
 .hero-image {
+  position: relative;
+  width: 100%;
   height: 60vh; /* adjust height as needed */
   background-image: url('download.jpeg');
-  background-size: cover;
-  background-position: center;
+  /* Show full hero image too (no crop); change back to 'cover' if desired */
+  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
+  overflow: hidden; /* prevent any child/overlay from visually leaking out */
 }
 
 .hero-overlay{
   height: 100%;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -187,6 +200,15 @@ button {
   color: #fff;
   background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25));
   padding: 20px;
+}
+
+/* If an <img> is ever used inside .hero-image, this keeps it contained */
+.hero-image > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* use 'contain' if you must see entire image */
 }
 
 .hero-overlay h1{
@@ -198,11 +220,52 @@ button {
   font-size: 1.1rem;
 }
 
+@media (max-width: 640px) {
+  .navbar {
+    display: flex row;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #69b20d;
+  }
+  .nav-links li {
+    flex: 5% 5% 25%;
+    text-align:end;
+    /* padding: -100px ; */
+    /* margin: -5px 0px -5px 100px; */
+  }
+  .nav-links button {
+    width: 5%;
+    min-width: 75px;
+    padding: 10px 12px ;
+  }
+  .hero-image {
+    height: 45vh;
+    background-size: cover; /* better fill on narrow screens */
+  }
+  .hero-overlay h1 {
+    font-size: 2.4rem;
+  }
+  .hero-overlay p {
+    font-size: 1rem;
+  }
+}
+
 /* Make CTA inside hero green with white text */
 .hero-overlay .cta-button{
   background-color: #69b20d;
   color: #fff;
-  box-shadow: none;
+  /* box-shadow: none; */
 }
 .hero-overlay .cta-button:hover{
   transform: none;
@@ -229,7 +292,7 @@ button {
 
 .about-section p {
   font-size: 1.25rem; /* same as text-lg */
-  color: #6b7280; /* Tailwind's text-muted-foreground (gray-500/600) */
+  color: #fff; /* Tailwind's text-muted-foreground (gray-500/600) */
   line-height: 1.75; /* same as leading-relaxed */
 }
 
